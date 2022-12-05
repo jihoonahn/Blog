@@ -123,8 +123,8 @@
 }
 
 .blog-search {
-/*    display: inline-flex;*/
-    display: none;
+    display: inline-flex;
+/*    display: none;*/
     align-items: center;
     justify-content: center;
     width: 32px;
