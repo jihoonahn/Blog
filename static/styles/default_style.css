@@ -115,8 +115,7 @@ img {
     height: 100%;
     background-position: center center;
     background-size: cover;
-    margin-bottom: 15px;
-    border-radius: 15px;
+    border-radius: 100%;
 }
 
 .site-main {
