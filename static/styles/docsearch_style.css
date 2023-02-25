@@ -55,6 +55,7 @@
     --docsearch-logo-color: var(--docsearch-text-color);
     --docsearch-muted-color: var(--color-gray-500);
     --docsearch-container-background: rgb(244 244 245/55%);
+    transition: 0.2s ease-in-out;
 }
 
 .DocSearch-Dropdown {
@@ -68,6 +69,12 @@
 
 .DocSearch-Hit-path {
     display: none;
+}
+
+.DocSearch-Button-Placeholder {
+    font-size: 1rem;
+    padding: 0 12px 0 6px;
+    transition: 0.2s ease-in-out;
 }
 
 @media(max-width: 768px) {
