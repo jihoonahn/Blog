@@ -28,11 +28,13 @@
 
 .post-article-image {
     margin-right: 30px;
+    border-radius: 20px;
     transition: all 0.2s ease;
 }
 
 .post-article-image img {
     box-sizing: border-box;
+    border-radius: 20px;
     padding: 0;
     border: none;
     margin: auto;
