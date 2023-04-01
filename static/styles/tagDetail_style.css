@@ -13,8 +13,6 @@
 
 .post-tagDetail-feed {
     position: relative;
-    display: flex;
-    flex-wrap: wrap;
     margin: 0 -20px;
     padding: 40px 0 0 0;
 }
@@ -29,6 +27,7 @@
 .post-article-link {
     display: flex;
     height: 125px;
+    text-decoration: none;
 }
 
 .post-article-image {
@@ -51,4 +50,5 @@
 .post-article-content {
     display: flex;
     flex-direction: column;
+    text-align: left;
 }
