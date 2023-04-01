@@ -27,7 +27,7 @@
 }
 
 .post-article-image {
-    padding-right: 30px;
+    margin-right: 30px;
 }
 
 .post-article-image img {
@@ -88,7 +88,7 @@
     }
     
     .post-article-image {
-        padding-right: 0;
-        padding-bottom: 20px;
+        margin-right: 0;
+        margin-bottom: 20px;
     }
 }
