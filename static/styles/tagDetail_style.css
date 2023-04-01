@@ -28,6 +28,7 @@
 
 .post-article-image {
     margin-right: 30px;
+    transition: all 0.2s ease;
 }
 
 .post-article-image img {
@@ -73,6 +74,11 @@
     box-shadow: 0 0 20px rgba(39,44,49,0.12), 0 3px 16px rgba(39, 44, 49,0.09);
     transition: all 0.2s ease;
     transform: translate3D(0, -15px, 0);
+}
+
+.post-article-link:hover .post-article-content-title {
+    color: darkgray;
+    transition: all 0.2s ease;
 }
 
 @media (max-width: 592px) {
