@@ -19,14 +19,12 @@
 
 .post-article {
     margin-top: 0;
-    border-bottom: 1px solid #d2d2d7;
     padding-top: 32px;
     padding-bottom: 32px;
 }
 
 .post-article-link {
     display: flex;
-    height: 125px;
     text-decoration: none;
 }
 
@@ -40,25 +38,23 @@
     border: none;
     margin: auto;
     display: block;
-    min-width: 100%;
-    max-width: 100%;
+    width: 300px;
     min-height: 100%;
     max-height: 100%;
     object-fit: cover;
 }
 
 .post-article-content {
-    display: flex;
     flex-direction: column;
     text-align: left;
 }
 
 .post-article-content-tag {
-    color: #898989;
     font-size: 15px;
     font-weight: 400;
     margin-top: 10px;
     margin-bottom: 10px;
+    color: #;
 }
 
 .post-article-content-title {
