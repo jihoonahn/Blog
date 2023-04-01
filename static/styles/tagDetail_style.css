@@ -22,12 +22,13 @@
 .post-article {
     margin-top: 0;
     border-bottom: 1px solid #d2d2d7;
-    padding: 32px 0 0 32px;
+    padding-top: 32px;
+    padding-bottom: 32px;
 }
 
 .post-article-link {
     display: flex;
-    height: 50px;
+    height: 125px;
 }
 
 .post-article-image {
