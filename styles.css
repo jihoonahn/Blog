@@ -541,6 +541,7 @@ code {
   font-size: 95%;
   white-space: break-spaces;
   border-radius: 6px;
+  line-break: anywhere;
 }
 
 pre {
@@ -1482,6 +1483,10 @@ pre code .preprocessing {
 
 .leading-none {
   line-height: 1;
+}
+
+.leading-normal {
+  line-height: 1.5;
 }
 
 .text-black {
