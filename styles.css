@@ -1105,8 +1105,8 @@ pre code .preprocessing {
   width: 2.25rem;
 }
 
-.w-\[130px\] {
-  width: 130px;
+.w-\[30\%\] {
+  width: 30%;
 }
 
 .w-\[85\%\] {
@@ -1253,6 +1253,10 @@ pre code .preprocessing {
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+.break-all {
+  word-break: break-all;
 }
 
 .rounded-3xl {
@@ -1739,8 +1743,8 @@ pre code .preprocessing {
     width: 0.875rem;
   }
 
-  .md\:w-\[265px\] {
-    width: 265px;
+  .md\:w-\[350px\] {
+    width: 350px;
   }
 
   .md\:w-\[654px\] {
