@@ -1747,6 +1747,10 @@ pre code .preprocessing {
     width: 350px;
   }
 
+  .md\:w-\[43rem\] {
+    width: 43rem;
+  }
+
   .md\:w-\[654px\] {
     width: 654px;
   }
