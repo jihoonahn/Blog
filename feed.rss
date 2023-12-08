@@ -1,4 +1,61 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>jihoon.me</title><description>This is a personal blog for iOS Developer jihoonahn.</description><link>https://blog.jihoon.me</link><language>ko</language><lastBuildDate>Mon, 4 Dec 2023 08:14:11 +0000</lastBuildDate><pubDate>Mon, 4 Dec 2023 08:14:11 +0000</pubDate><ttl>250</ttl><atom:link href="https://blog.jihoon.me/feed.rss" rel="self" type="application/rss+xml"/><item><guid isPermaLink="true">https://blog.jihoon.me/blog/publish-part-2</guid><title>Publish 사용하기 part 2</title><description>Swift publish 커스텀하기</description><link>https://blog.jihoon.me/blog/publish-part-2</link><pubDate>Thu, 26 Oct 2023 14:48:00 +0000</pubDate><content:encoded><![CDATA[<h2>Publish 구조 작성하기</h2><pre><code><span class="keyword">struct</span> PublishHTMLFactory: <span class="type">HTMLFactory</span> {
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>jihoon.me</title><description>This is a personal blog for iOS Developer jihoonahn.</description><link>https://blog.jihoon.me</link><language>ko</language><lastBuildDate>Fri, 8 Dec 2023 08:27:43 +0000</lastBuildDate><pubDate>Fri, 8 Dec 2023 08:27:43 +0000</pubDate><ttl>250</ttl><atom:link href="https://blog.jihoon.me/feed.rss" rel="self" type="application/rss+xml"/><item><guid isPermaLink="true">https://blog.jihoon.me/blog/publish-part-3</guid><title>Publish 사용하기 part 3</title><description>Swift publish 배포하기</description><link>https://blog.jihoon.me/blog/publish-part-3</link><pubDate>Sat, 18 Nov 2023 15:48:00 +0000</pubDate><content:encoded><![CDATA[<h2>Publish 배포 준비하기</h2><p>일단 배포 준비를 하기 위해서는 publish pipeline에서 수정할 부분이 있습니다.</p><pre><code><span class="comment">// This will generate your website using the built-in Foundation theme:</span>
+<span class="keyword">try</span> <span class="type">Example</span>().<span class="call">publish</span>(using: [
+    .<span class="call">optional</span>(.<span class="call">copyResources</span>()),
+    .<span class="call">addMarkdownFiles</span>(),
+    .<span class="call">generateHTML</span>(withTheme: .<span class="dotAccess">publish</span>),
+    .<span class="call">generateRSSFeed</span>(including: [.<span class="dotAccess">blog</span>]),
+    .<span class="call">generateSiteMap</span>(),
+    <span class="comment">/// Deploy 관련</span>
+    .<span class="call">deploy</span>(using: <span class="comment">///배포 방식 )</span>
+])
+</code></pre><p>기존에 만든 pipeline에서 <code>deploy(using:)</code> 메서드를 추가해줍니다.</p><pre><code><span class="keyword">static func</span> gitHub(
+    <span class="keyword">_</span> repository: <span class="type">String</span>,
+    branch: <span class="type">String</span> = <span class="string">"master"</span>,
+    useSSH: <span class="type">Bool</span> = <span class="keyword">true</span>
+) -&gt; <span class="type">DeploymentMethod</span>&lt;<span class="type">Example</span>&gt;
+</code></pre><ul><li>repository: 프로젝트 Repository</li><li>branch: 배포할 Branch</li><li>useSSH: SSH 키를 사용하는지 여부</li></ul><pre><code>.<span class="call">deploy</span>(using: .<span class="call">git</span>(<span class="string">"git@ios.github.com:jihoonahn/ExamplePublish"</span>, branch: <span class="string">"gh-pages"</span>))
+</code></pre><p>저는 ssh키를 여러개를 사용하는 관계로 그냥 git으로 작성 하였습니다.</p><p>그리고 Website 부분에서</p><pre><code><span class="keyword">struct</span> Example: <span class="type">Website</span> {
+    <span class="keyword">enum</span> SectionID: <span class="type">String</span>, <span class="type">WebsiteSectionID</span> {
+        <span class="keyword">case</span> blog
+        <span class="keyword">case</span> about
+        <span class="keyword">var</span> name: <span class="type">String</span> {
+            <span class="keyword">switch self</span> {
+            <span class="keyword">case</span> .<span class="dotAccess">blog</span>: <span class="keyword">return</span> <span class="string">"Blog"</span>
+            <span class="keyword">case</span> .<span class="dotAccess">about</span>: <span class="keyword">return</span> <span class="string">"About"</span>
+            }
+        }
+    }
+
+    <span class="keyword">struct</span> ItemMetadata: <span class="type">WebsiteItemMetadata</span> {
+        <span class="comment">// Add any site-specific metadata that you want to use here.</span>
+    }
+
+    <span class="comment">// Update these properties to configure your website:</span>
+    <span class="keyword">var</span> url = <span class="type">URL</span>(string: <span class="comment">/* URL 값 입력 */</span> )!
+    <span class="keyword">var</span> name = <span class="string">"Example"</span>
+    <span class="keyword">var</span> description = <span class="string">"A description of Part"</span>
+    <span class="keyword">var</span> language: <span class="type">Language</span> { .<span class="dotAccess">english</span> }
+    <span class="keyword">var</span> imagePath: <span class="type">Path</span>? { <span class="keyword">nil</span> }
+}
+</code></pre><p>URL 값을 입력해줍니다.</p><pre><code><span class="keyword">var</span> url = <span class="type">URL</span>(string: <span class="string">"https://jihoonahn.github.io/"</span>)!
+</code></pre><p>Publish CLI를 보게 되면</p><pre><code><span class="type">Publish Command Line Interface</span>
+------------------------------
+<span class="type">Interact</span> with the <span class="type">Publish</span> <span class="keyword">static</span> site generator from
+the command line, to create new websites, or to generate
+and deploy existing ones.
+
+<span class="type">Available</span> commands:
+
+- new: <span class="type">Set</span> up a new website <span class="keyword">in</span> the current folder.
+- generate: <span class="type">Generate</span> the website <span class="keyword">in</span> the current folder.
+- run: <span class="type">Generate</span> and run a localhost server on <span class="keyword">default</span> port <span class="number">8000</span>
+       <span class="keyword">for</span> the website <span class="keyword">in</span> the current folder. <span class="type">Use</span> the <span class="string">"-p"</span>
+       or <span class="string">"--port"</span> option <span class="keyword">for</span> customizing the <span class="keyword">default</span> port.
+- deploy: <span class="type">Generate</span> and deploy the website <span class="keyword">in</span> the current
+       folder, according to its deployment method.
+</code></pre><p>이런식으로 deploy 관련 커맨드가 있습니다.</p><pre><code>$ publish generate
+$ publish deploy
+</code></pre><p>이렇게 명령어를 순차적으로 작성하게 되면,</p><img width = 100% src="https://github.com/jihoonahn/blog/assets/68891494/20ec7f25-7aeb-441a-9ca7-240b39c7d1ca"></img><p>이렇게 Deploy가 완료가 됬다는 내용과 함께</p><img width=100% src="https://github.com/jihoonahn/ExamplePublish/assets/68891494/38468078-8095-4f96-9038-1c8c8b09c050"></img><ul><li>❌ 포스트 올라간 후에 삭제될 Repository입니다.</li></ul><p>이렇게 gh-pages에 잘 배포가 되는것을 확인 할 수 있습니다.</p><p>위에서 진행한 내용은 <a href="https://github.com/Jihoonahn/Blog-Document/tree/main/Publish/part3">예시코드</a> 를 확인할 수 있습니다.</p><hr><p>이번 글에서는 Publish에서 Deploy 하는 방법에 대해서 알아보면서, 총 publish를 사용하는 방법에 대해서 3개로 파트를 나눠서 제작을 하였습니다. 여러분도 한번 Publish로 자기만의 blog를 만들어 보는것은 어떤가요?</p>]]></content:encoded></item><item><guid isPermaLink="true">https://blog.jihoon.me/blog/publish-part-2</guid><title>Publish 사용하기 part 2</title><description>Swift publish 커스텀하기</description><link>https://blog.jihoon.me/blog/publish-part-2</link><pubDate>Thu, 26 Oct 2023 14:48:00 +0000</pubDate><content:encoded><![CDATA[<h2>Publish 구조 작성하기</h2><pre><code><span class="keyword">struct</span> PublishHTMLFactory: <span class="type">HTMLFactory</span> {
     <span class="keyword">typealias</span> Site = <span class="type">Example</span>
 
     <span class="keyword">func</span> makeIndexHTML(for index: <span class="type">Publish</span>.<span class="type">Index</span>, context: <span class="type">Publish</span>.<span class="type">PublishingContext</span>&lt;<span class="type">Example</span>&gt;) <span class="keyword">throws</span> -&gt; <span class="type">Plot</span>.<span class="type">HTML</span> {

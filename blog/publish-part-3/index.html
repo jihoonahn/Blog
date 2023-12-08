@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"/><meta name="og:site_name" content="jihoon.me"/><link rel="canonical" href="https://blog.jihoon.me/blog/publish-part-3"/><meta name="twitter:url" content="https://blog.jihoon.me/blog/publish-part-3"/><meta name="og:url" content="https://blog.jihoon.me/blog/publish-part-3"/><title>Publish 사용하기 part 3</title><meta name="twitter:title" content="Publish 사용하기 part 3"/><meta name="og:title" content="Publish 사용하기 part 3"/><meta name="description" content="Swift publish 배포하기"/><meta name="twitter:description" content="Swift publish 배포하기"/><meta name="og:description" content="Swift publish 배포하기"/><meta name="twitter:card" content="summary"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/><link rel="stylesheet" href="/styles.css" type="text/css"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/><link rel="alternate" href="/feed.rss" type="application/rss+xml" title="Subscribe to jihoon.me"/></head><body><header id="header" class="fixed top-0 left-0 w-full z-20 bg-blog-c-nav backdrop-saturate-125 backdrop-blur-xl"><div class="pl-6 pr-4"><div class="flex justify-between mx-auto my-0 max-w-3xl"><a href="/" class="flex items-center h-blog-nav"><img src="/static/images/icon.svg" class="max-h-11 my-0"/></a><div class="flex justify-end items-center grow"><div class="flex items-center pl-4"><div id="docsearch" class="blogDocsearch"></div></div><button id="mobileNavButton" aria-label="Mobile navigation" class="cursor-pointer flex w-10 h-blog-nav items-center justify-center group md:hidden"><span class="relative h-4 w-4 overflow-hidden"><span class="transition duration-200 top-0 left-0 absolute w-full h-0.5 bg-blog-c-nav-text ease translate-x-0 translate-y-0 group-[.expanded]:rotate-45 group-[.expanded]:translate-y-0 group-[.expanded]:top-1.5"></span><span class="transition duration-200 top-1.5 left-0 absolute w-full h-0.5 bg-blog-c-nav-text ease translate-x-0 translate-y-0 group-[.expanded]:opacity-0"></span><span class="transition duration-200 top-3 left-0 absolute w-full h-0.5 bg-blog-c-nav-text ease translate-x-0 translate-y-0 group-[.expanded]:-rotate-45 group-[.expanded]:-translate-y-0 group-[.expanded]:top-1.5"></span></span></button></div><nav id="blogNav" class="hidden md:flex"><ul class="flex list-none m-0"><li><a href="/blog" class="blogNavItem blogNavBarMenuLink block py-0 px-3 text-xs leading-calc-blog-nav">Blog</a></li><li><a href="/about" class="blogNavItem blogNavBarMenuLink block py-0 px-3 text-xs leading-calc-blog-nav">About</a></li></ul></nav></div><div id="blogNavScreen" class="hidden h-screen"><div class="my-0 mx-auto max-w-[288px] pt-6 pb-24"><nav class="inline"><ul class="list-none m-0"><li><a href="/blog" class="blogNavItem block py-3 blogNavBarMenuLink border-b border-zinc-500 border-solid">Blog</a></li><li><a href="/about" class="blogNavItem block py-3 blogNavBarMenuLink border-b border-zinc-500 border-solid">About</a></li></ul></nav><div class="mt-4 w-full"><ul class="flex justify-center gap-4 list-none"><li><a href="https://github.com/jihoonahn" class="text-center w-6 h-6"><img src="/static/icons/github.svg" class="w-6 h-6 rounded-none"/></a></li><li><a href="https://www.linkedin.com/in/ahnjihoon/" class="text-center w-6 h-6"><img src="/static/icons/linkedin.svg" class="w-6 h-6 rounded-none"/></a></li><li><a href="mailto:jihoonahn.dev@gmail.com" class="text-center w-6 h-6"><img src="/static/icons/envelope-solid.svg" class="w-6 h-6 rounded-none"/></a></li><li><a href="https://blog.jihoon.me/feed.rss" class="text-center w-6 h-6"><img src="/static/icons/rss-solid.svg" class="w-6 h-6 rounded-none"/></a></li></ul></div></div></div></div><script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script><script type="text/javascript" src="/static/scripts/docsearch.js"></script></header><main id="main" class="relative z-10 flex flex-1 flex-col min-h-screen pt-20 pb-14"><section><article><div><div class="component md:w-[654px]"><div><time class="font-semibold text-gray-500 text-sm">2023년 11월 18일</time></div></div><div class="component my-0 md:w-[654px]"><div><h1 class="m-0 leading-normal font-semibold text-heading-2 md:text-heading-1">Publish 사용하기 part 3</h1></div></div><div class="component mt-5 mb-0 md:w-[654px]"><div class="text-lg md:text-2xl mx-auto">Swift publish 배포하기</div></div></div><figure class="component rounded-xl border border-gray-200 overflow-hidden min-w-[85%] lg:min-w-[320px]"><div><img src="https://github.com/jihoonahn/blog/assets/68891494/96d08e16-276c-4ef0-8091-69add54284ef" class="my-0"/></div></figure><div class="mx-auto w-[85%] text-left mt-8 md:w-[700px]"><div><h2>Publish 배포 준비하기</h2><p>일단 배포 준비를 하기 위해서는 publish pipeline에서 수정할 부분이 있습니다.</p><pre><code><span class="comment">// This will generate your website using the built-in Foundation theme:</span>
+<span class="keyword">try</span> <span class="type">Example</span>().<span class="call">publish</span>(using: [
+    .<span class="call">optional</span>(.<span class="call">copyResources</span>()),
+    .<span class="call">addMarkdownFiles</span>(),
+    .<span class="call">generateHTML</span>(withTheme: .<span class="dotAccess">publish</span>),
+    .<span class="call">generateRSSFeed</span>(including: [.<span class="dotAccess">blog</span>]),
+    .<span class="call">generateSiteMap</span>(),
+    <span class="comment">/// Deploy 관련</span>
+    .<span class="call">deploy</span>(using: <span class="comment">///배포 방식 )</span>
+])
+</code></pre><p>기존에 만든 pipeline에서 <code>deploy(using:)</code> 메서드를 추가해줍니다.</p><pre><code><span class="keyword">static func</span> gitHub(
+    <span class="keyword">_</span> repository: <span class="type">String</span>,
+    branch: <span class="type">String</span> = <span class="string">"master"</span>,
+    useSSH: <span class="type">Bool</span> = <span class="keyword">true</span>
+) -&gt; <span class="type">DeploymentMethod</span>&lt;<span class="type">Example</span>&gt;
+</code></pre><ul><li>repository: 프로젝트 Repository</li><li>branch: 배포할 Branch</li><li>useSSH: SSH 키를 사용하는지 여부</li></ul><pre><code>.<span class="call">deploy</span>(using: .<span class="call">git</span>(<span class="string">"git@ios.github.com:jihoonahn/ExamplePublish"</span>, branch: <span class="string">"gh-pages"</span>))
+</code></pre><p>저는 ssh키를 여러개를 사용하는 관계로 그냥 git으로 작성 하였습니다.</p><p>그리고 Website 부분에서</p><pre><code><span class="keyword">struct</span> Example: <span class="type">Website</span> {
+    <span class="keyword">enum</span> SectionID: <span class="type">String</span>, <span class="type">WebsiteSectionID</span> {
+        <span class="keyword">case</span> blog
+        <span class="keyword">case</span> about
+        <span class="keyword">var</span> name: <span class="type">String</span> {
+            <span class="keyword">switch self</span> {
+            <span class="keyword">case</span> .<span class="dotAccess">blog</span>: <span class="keyword">return</span> <span class="string">"Blog"</span>
+            <span class="keyword">case</span> .<span class="dotAccess">about</span>: <span class="keyword">return</span> <span class="string">"About"</span>
+            }
+        }
+    }
+
+    <span class="keyword">struct</span> ItemMetadata: <span class="type">WebsiteItemMetadata</span> {
+        <span class="comment">// Add any site-specific metadata that you want to use here.</span>
+    }
+
+    <span class="comment">// Update these properties to configure your website:</span>
+    <span class="keyword">var</span> url = <span class="type">URL</span>(string: <span class="comment">/* URL 값 입력 */</span> )!
+    <span class="keyword">var</span> name = <span class="string">"Example"</span>
+    <span class="keyword">var</span> description = <span class="string">"A description of Part"</span>
+    <span class="keyword">var</span> language: <span class="type">Language</span> { .<span class="dotAccess">english</span> }
+    <span class="keyword">var</span> imagePath: <span class="type">Path</span>? { <span class="keyword">nil</span> }
+}
+</code></pre><p>URL 값을 입력해줍니다.</p><pre><code><span class="keyword">var</span> url = <span class="type">URL</span>(string: <span class="string">"https://jihoonahn.github.io/"</span>)!
+</code></pre><p>Publish CLI를 보게 되면</p><pre><code><span class="type">Publish Command Line Interface</span>
+------------------------------
+<span class="type">Interact</span> with the <span class="type">Publish</span> <span class="keyword">static</span> site generator from
+the command line, to create new websites, or to generate
+and deploy existing ones.
+
+<span class="type">Available</span> commands:
+
+- new: <span class="type">Set</span> up a new website <span class="keyword">in</span> the current folder.
+- generate: <span class="type">Generate</span> the website <span class="keyword">in</span> the current folder.
+- run: <span class="type">Generate</span> and run a localhost server on <span class="keyword">default</span> port <span class="number">8000</span>
+       <span class="keyword">for</span> the website <span class="keyword">in</span> the current folder. <span class="type">Use</span> the <span class="string">"-p"</span>
+       or <span class="string">"--port"</span> option <span class="keyword">for</span> customizing the <span class="keyword">default</span> port.
+- deploy: <span class="type">Generate</span> and deploy the website <span class="keyword">in</span> the current
+       folder, according to its deployment method.
+</code></pre><p>이런식으로 deploy 관련 커맨드가 있습니다.</p><pre><code>$ publish generate
+$ publish deploy
+</code></pre><p>이렇게 명령어를 순차적으로 작성하게 되면,</p><img width = 100% src="https://github.com/jihoonahn/blog/assets/68891494/20ec7f25-7aeb-441a-9ca7-240b39c7d1ca"></img><p>이렇게 Deploy가 완료가 됬다는 내용과 함께</p><img width=100% src="https://github.com/jihoonahn/ExamplePublish/assets/68891494/38468078-8095-4f96-9038-1c8c8b09c050"></img><ul><li>❌ 포스트 올라간 후에 삭제될 Repository입니다.</li></ul><p>이렇게 gh-pages에 잘 배포가 되는것을 확인 할 수 있습니다.</p><p>위에서 진행한 내용은 <a href="https://github.com/Jihoonahn/Blog-Document/tree/main/Publish/part3">예시코드</a> 를 확인할 수 있습니다.</p><hr><p>이번 글에서는 Publish에서 Deploy 하는 방법에 대해서 알아보면서, 총 publish를 사용하는 방법에 대해서 3개로 파트를 나눠서 제작을 하였습니다. 여러분도 한번 Publish로 자기만의 blog를 만들어 보는것은 어떤가요?</p></div></div><div class="mx-auto w-[85%] text-left mt-8 md:w-[700px]"><div class="flex justify-between mt-6"><div><ul class="m-0"><li class="inline-block mr-1.5"><a href="https://blog.jihoon.me/tags/swift" class="block my-1 px-1.5 py-2 bg-neutral-900 text-white rounded-lg transition duration-200 ease-in-out hover:bg-zinc-300 hover:text-black">Swift</a></li><li class="inline-block mr-1.5"><a href="https://blog.jihoon.me/tags/publish" class="block my-1 px-1.5 py-2 bg-neutral-900 text-white rounded-lg transition duration-200 ease-in-out hover:bg-zinc-300 hover:text-black">Publish</a></li><li class="inline-block mr-1.5"><a href="https://blog.jihoon.me/tags/web" class="block my-1 px-1.5 py-2 bg-neutral-900 text-white rounded-lg transition duration-200 ease-in-out hover:bg-zinc-300 hover:text-black">Web</a></li><li class="inline-block mr-1.5"><a href="https://blog.jihoon.me/tags/theory" class="block my-1 px-1.5 py-2 bg-neutral-900 text-white rounded-lg transition duration-200 ease-in-out hover:bg-zinc-300 hover:text-black">Theory</a></li></ul></div><button aria-label="link share" class="copyPost m-1 w-9 h-9 p-1.5 bg-blog-c-button rounded-full hover:bg-gray-300 transition duration-200 ease-in-out"><img src="/static/icons/copy.svg" class="my-0"/></button></div></div><div class="flex flex-col-reverse px-4 mt-11 mb-4 max-w-3xl mx-auto md:flex-row md:px-0"><div class="min-w-0 flex-1 mt-4 md:mt-0"><a href="/blog/publish-part-2" class="flex cursor-pointer rounded-[10px] bg-blog-c-preview-page w-full h-full p-4 min-h-[4.2rem] items-center"><div class="flex-1 flex flex-col leading-none min-w-0 items-start"><p class="text-gray-500 m-0.5">Preview Post</p><h3 class="text-black text-2xl font-medium m-0.5">Publish 사용하기 part 2</h3></div></a></div><div class="min-w-0 flex-1 mt-4 md:mt-0 md:ml-8"></div></div><script src="https://utteranc.es/client.js" repo="jihoonahn/blog" issue-term="pathname" label="comments" theme="github-light" crossorigin="anonymous" async></script></article></section></main><footer class="bg-blog-c-footer relative"><div class="flex flex-wrap justify-between p-1 mx-auto max-w-4xl"><div class="text-sm mx-3 my-auto p-2"><div><p class="text-stone-600 my-0">Copyright © <a href="https://github.com/jihoonahn" class="text-stone-700">Jihoonahn</a></p></div><div><p class="text-stone-600 my-0">Made with Swift</p></div></div><div class="mx-2"><ul class="inline-flex gap-4 list-none"><li class="text-center w-4 h-4"><a href="https://github.com/jihoonahn"><img src="/static/icons/github.svg" class="w-full h-auto rounded-none"/></a></li><li class="text-center w-4 h-4"><a href="https://www.linkedin.com/in/ahnjihoon/"><img src="/static/icons/linkedin.svg" class="w-full h-auto rounded-none"/></a></li><li class="text-center w-4 h-4"><a href="mailto:jihoonahn.dev@gmail.com"><img src="/static/icons/envelope-solid.svg" class="w-full h-auto rounded-none"/></a></li><li class="text-center w-4 h-4"><a href="https://blog.jihoon.me/feed.rss"><img src="/static/icons/rss-solid.svg" class="w-full h-auto rounded-none"/></a></li></ul></div></div></footer><script>(function(){
+    function attachEvent(selector, event, fn) {
+      const matches = typeof selector === 'string' ? document.querySelectorAll(selector)    : selector;
+      if (matches && matches.length) {
+        matches.forEach((elem) => {
+          elem.addEventListener(event, (e) => fn(e, elem), false);
+        });
+      }
+    }
+
+    window.onload = function() {
+      var host = window.location.host;
+      var pathname = window.location.pathname;
+      let lastKnownInnerWidth = window.innerWidth;
+      let ticking = true;
+    
+      attachEvent('#mobileNavButton', 'click', function() {
+        document.body.classList.toggle('overflow-hidden');
+        document.getElementById('blogNavScreen')?.classList.toggle('hidden');
+        document.getElementById('mobileNavButton')?.classList.toggle('expanded');
+      });
+    
+      attachEvent('.copyPost', 'click', function() {
+        var tempInput = document.createElement("input");
+        tempInput.value = host + pathname;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+      });
+    
+      function applyHeaderStylesOnResize() {
+        if (lastKnownInnerWidth<768) {
+          document.body.classList.remove('overflow-hidden');
+          document.getElementById('blogNavScreen')?.classList.add('hidden');
+          document.getElementById('mobileNavButton')?.classList.remove('expanded');
+        }
+      }
+    
+      applyHeaderStylesOnResize();
+      window.addEventListener('resize', applyHeaderStylesOnResize);
+    };
+    
+    window.onpageshow = function() {
+      document.body.classList.remove('overflow-hidden');
+      document.getElementById('header nav')?.classList.add('hidden');
+    };
+})();</script></body></html>
