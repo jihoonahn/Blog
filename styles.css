@@ -507,12 +507,32 @@ li {
   text-align: -webkit-match-parent;
 }
 
-img,
+img, 
     video {
   max-width: 100%;
   height: auto;
   margin: 0.25rem 0;
   border-radius: 10px;
+}
+
+iframe {
+  height: 13rem;
+}
+
+@media (min-width: 640px) {
+  iframe {
+    height: 20rem;
+  }
+}
+
+@media (min-width: 768px) {
+  iframe {
+    height: 24rem;
+  }
+}
+
+iframe {
+  width: 100%;
 }
 
 a {
@@ -1053,6 +1073,10 @@ pre code .preprocessing {
 
 .h-4 {
   height: 1rem;
+}
+
+.h-52 {
+  height: 13rem;
 }
 
 .h-6 {
@@ -1693,6 +1717,10 @@ pre code .preprocessing {
 }
 
 @media (min-width: 640px) {
+  .sm\:h-80 {
+    height: 20rem;
+  }
+
   .sm\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
