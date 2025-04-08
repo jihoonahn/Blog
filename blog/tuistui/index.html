@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"/><meta name="og:site_name" content="jihoon.me"/><link rel="canonical" href="https://blog.jihoon.me/blog/tuistui"/><meta name="twitter:url" content="https://blog.jihoon.me/blog/tuistui"/><meta name="og:url" content="https://blog.jihoon.me/blog/tuistui"/><title>TuistUI</title><meta name="twitter:title" content="TuistUI"/><meta name="og:title" content="TuistUI"/><meta name="description" content="Tuist를 SwiftUI 처럼 사용할 수 있는 DSL Plugin인 제가 만든 TuistUI를 소개합니다."/><meta name="twitter:description" content="Tuist를 SwiftUI 처럼 사용할 수 있는 DSL Plugin인 제가 만든 TuistUI를 소개합니다."/><meta name="og:description" content="Tuist를 SwiftUI 처럼 사용할 수 있는 DSL Plugin인 제가 만든 TuistUI를 소개합니다."/><meta name="twitter:card" content="summary"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/><link rel="stylesheet" href="/styles.css" type="text/css"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/><link rel="alternate" href="/feed.rss" type="application/rss+xml" title="Subscribe to jihoon.me"/></head><body><header id="header" class="relative md:fixed top-0 left-0 w-full z-20 bg-blog-c-nav backdrop-saturate-125 backdrop-blur-xl"><div class="pl-6 pr-4"><div class="flex justify-between mx-auto my-0 max-w-3xl"><a href="/" class="flex items-center h-blog-nav"><img src="/static/images/icon.svg" class="max-h-11 my-0"/></a><div class="flex justify-end items-center grow"><div class="flex items-center pl-4"><div id="docsearch" class="blogDocsearch"></div></div><button id="mobileNavButton" aria-label="Mobile navigation" class="cursor-pointer flex w-10 h-blog-nav items-center justify-center group md:hidden"><span class="relative h-4 w-4 overflow-hidden"><span class="transition duration-200 top-0 left-0 absolute w-full h-0.5 bg-blog-c-nav-text ease translate-x-0 translate-y-0 group-[.expanded]:rotate-45 group-[.expanded]:translate-y-0 group-[.expanded]:top-1.5"></span><span class="transition duration-200 top-1.5 left-0 absolute w-full h-0.5 bg-blog-c-nav-text ease translate-x-0 translate-y-0 group-[.expanded]:opacity-0"></span><span class="transition duration-200 top-3 left-0 absolute w-full h-0.5 bg-blog-c-nav-text ease translate-x-0 translate-y-0 group-[.expanded]:-rotate-45 group-[.expanded]:-translate-y-0 group-[.expanded]:top-1.5"></span></span></button></div><nav id="blogNav" class="hidden md:flex"><ul class="flex list-none m-0"><li><a href="/blog" class="blogNavItem blogNavBarMenuLink block py-0 px-3 text-xs leading-calc-blog-nav">Blog</a></li><li><a href="/about" class="blogNavItem blogNavBarMenuLink block py-0 px-3 text-xs leading-calc-blog-nav">About</a></li></ul></nav></div><div id="blogNavScreen" class="hidden h-screen"><div class="my-0 mx-auto max-w-[288px] pt-6 pb-24"><nav class="inline"><ul class="list-none m-0"><li><a href="/blog" class="blogNavItem block py-3 blogNavBarMenuLink border-b border-zinc-500 border-solid">Blog</a></li><li><a href="/about" class="blogNavItem block py-3 blogNavBarMenuLink border-b border-zinc-500 border-solid">About</a></li></ul></nav><div class="mt-4 w-full"><ul class="flex justify-center gap-4 list-none"><li><a href="https://github.com/jihoonahn" class="text-center w-6 h-6"><img src="/static/icons/github.svg" class="w-6 h-6 rounded-none"/></a></li><li><a href="https://www.linkedin.com/in/ahnjihoon/" class="text-center w-6 h-6"><img src="/static/icons/linkedin.svg" class="w-6 h-6 rounded-none"/></a></li><li><a href="mailto:jihoonahn.dev@gmail.com" class="text-center w-6 h-6"><img src="/static/icons/envelope-solid.svg" class="w-6 h-6 rounded-none"/></a></li><li><a href="https://blog.jihoon.me/feed.rss" class="text-center w-6 h-6"><img src="/static/icons/rss-solid.svg" class="w-6 h-6 rounded-none"/></a></li></ul></div></div></div></div><script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script><script type="text/javascript" src="/static/scripts/docsearch.js"></script></header><main id="main" class="relative z-10 flex flex-1 flex-col min-h-screen pt-3 md:pt-20 pb-14"><section><article><div><div class="component md:w-[654px]"><div><time class="font-semibold text-gray-500 text-sm">2025년 04월 08일</time></div></div><div class="component my-0 md:w-[654px]"><div><h1 class="m-0 leading-normal font-semibold text-heading-2 md:text-heading-1">TuistUI</h1></div></div><div class="component mt-5 mb-0 md:w-[654px]"><div class="text-lg md:text-2xl mx-auto">Tuist를 SwiftUI 처럼 사용할 수 있는 DSL Plugin인 제가 만든 TuistUI를 소개합니다.</div></div></div><figure class="component rounded-xl border border-gray-200 overflow-hidden min-w-[85%] lg:min-w-[320px]"><div><img src="https://github.com/user-attachments/assets/0751f541-5b07-451b-ac85-85f6a7d5561a" class="my-0"/></div></figure><div class="mx-auto w-[85%] text-left mt-8 md:w-[700px]"><div><h1>TuistUI</h1><p>잠시 군대 복무 때문에 블로그 작성과 활동에 제약(개발 환경 등등)이 생겨서 글을 작성하지 못한 상태였으나, 이제 곧 전역을 준비하며.. 다시 시작 해볼려고 합니다. 이번에는 제가 애정있는 프로젝트이자, 군대에서도 유지보수를 했었고, 외출/외박때도 열심히 기능을 생각하던 애착 프로젝트를 소개할려고 합니다.</p><blockquote><p>TuistUI는 Tuist를 SwiftUI처럼 가독성 있게 사용하기 위해 만든 Tuist DSL Plugin입니다.</p></blockquote><p>TuistUI를 사용하기 위해서는 <code>Config.swift</code> 에 아래 코드를 추가하면 됩니다.</p><pre><code><span class="keyword">import</span> ProjectDescription
+
+<span class="keyword">let</span> config = <span class="type">Config</span>(
+    plugins: [
+        .<span class="call">git</span>(url: <span class="string">"https://github.com/jihoonme/tuistui"</span>, tag: <span class="string">"vTAG"</span>)
+    ]
+)
+</code></pre><h2>플러그인 개발 동기</h2><p>아이디어는 SwiftUI를 보면서 하게 되었습니다.</p><p>기존의 Tuist 같은 경우는 <code>Project</code> 생성과 <code>Workspace</code> 생성 부분이 마치 <code>Package.swift</code> 와 비슷하다고 생각이 들었습니다. 하지만 그 스타일에서 벗어나 SwiftUI처럼 한눈에 직관적으로 보이는 느낌으로 만들고 싶었습니다.</p><pre><code><span class="keyword">struct</span> BaseView: <span class="type">View</span> {
+	<span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> {
+		<span class="type">VStack</span> {
+			<span class="type">Text</span>(<span class="string">"Hello World"</span>)
+		}
+	}
+}
+</code></pre><p>관심있게 보던 프로젝트인 <a href="https://github.com/TokamakUI/Tokamak"><code>Tokamak</code></a> 프로젝트와 <a href="https://github.com/swifweb/web"><code>web</code></a> 그리고 <a href="https://github.com/JohnSundell/Plot"><code>Plot</code></a> 프로젝트를 참고해서 TuistUI의 전체적인 틀을 잡게 되었습니다.</p><h1>어떤 기능을 가지고 있는가</h1><h2>Module 기능</h2><p><code>TuistUI</code>는 Project든 Workspace든 <code>Module</code> 이라는 프로토콜을 상속 받는것으로 시작이 됩니다.</p><pre><code><span class="keyword">struct</span> BaseFeature: <span class="type">Module</span> {}
+</code></pre><p>Module을 상속을 받게 되면 SwiftUI 처럼</p><pre><code><span class="keyword">struct</span> BaseFeature: <span class="type">Module</span> {
+  <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Module</span> {}
+}
+</code></pre><p>body 값을 받을수 있는 프로퍼티가 생성이 됩니다.</p><p>만약에 Project를 고르고 싶다면</p><pre><code><span class="keyword">struct</span> BaseFeature: <span class="type">Module</span> {
+	<span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Module</span> {
+	  <span class="type">Project</span> {}
+	}
+}
+</code></pre><p><code>Module</code>을 상속 받고 있는 <code>Project</code> 를 body 프로퍼티 안에 적어두면 됩니다.</p><p>그 후에 설정할 값들을 넣어주고</p><pre><code><span class="keyword">struct</span> BaseFeature: <span class="type">Module</span> {
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Module</span> {
+        <span class="type">Project</span> {
+            <span class="comment">/// Target Code</span>
+        }
+        .<span class="call">organizationName</span>(<span class="string">""</span>)
+        .<span class="call">package</span> {
+            <span class="comment">/// Package Code</span>
+        }
+    }
+}
+</code></pre><p>기존 Tuist 의 <code>name:</code> 부분은</p><pre><code><span class="keyword">let</span> project = <span class="type">Project</span>(
+	name: <span class="string">"BaseFeature"</span>
+	...
+)
+</code></pre><p>구조체명을 자동적으로 가져오게 설정해뒀습니다.</p><p><code>Project.swift</code> 파일에 아래 코드만 추가해주시면 됩니다.</p><pre><code><span class="keyword">let</span> project = <span class="type">BaseFeature</span>().<span class="call">module</span>()
+</code></pre><p>그리고 <code>Workspace</code> 같은 경우도 똑같이 생성이 됩니다.</p><p>Module 안에 Workspace에 필요한 값을 넣어주고</p><pre><code><span class="keyword">struct</span> TuistApp: <span class="type">Module</span> {
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Module</span> {
+        <span class="type">Workspace</span> {
+            <span class="type">Path</span>.<span class="call">relativeToRoot</span>(<span class="string">"Projects/App"</span>)
+        }
+        .<span class="call">scheme</span> {
+            <span class="comment">/// Scheme Code</span>
+        }
+    }
+}
+</code></pre><p><code>Workspace.swift</code> 파일 안에 위 코드만 추가하면 됩니다.</p><pre><code><span class="keyword">let</span> workspace = <span class="type">TuistApp</span>().<span class="call">module</span>()
+</code></pre><h2>Constant 값 관리</h2><p>SwiftUI에서 <code>@EnvironmentObject</code> 와 <code>ObservableObject</code> 부분을 보고 공통된 Constant를 관리해줄수 있는 공간이 있다면 괜찮을거 같다는 생각을 가지게 되어서 만들게 되었습니다.</p><p><code>ModuleObject</code>라는 프로토콜을 만들었고, 그곳 내부에서 Module 에서 사용되는 값들을 전체적으로 관리할수 있도록 구성했습니다.</p><pre><code><span class="keyword">struct</span> AppEnvironment: <span class="type">ModuleObject</span> {
+    <span class="keyword">static let</span> organizationName: <span class="type">String</span> = <span class="string">"jihoonme"</span>
+    <span class="keyword">static let</span> destinations: <span class="type">Destinations</span> = .<span class="dotAccess">iOS</span>
+    <span class="keyword">static let</span> deploymentTargets: <span class="type">DeploymentTargets</span> = .<span class="call">iOS</span>(<span class="string">"15.0"</span>)
+}
+</code></pre><p>그리고 SwiftUI에서 <code>@EnvironmentObject</code> 가 존재하듯 <code>@Constant</code> 라는 propertywrapper를 Module내부에 추가해주시면 값들을 편리하게 사용할 수 있습니다.</p><pre><code><span class="keyword">struct</span> BaseProject: <span class="type">Module</span> {
+    <span class="keyword">@Constant var</span> env = <span class="type">AppEnvironment</span>()
+
+    <span class="keyword">var</span> body: <span class="type">Module</span> {
+        <span class="type">Project</span> {
+            <span class="comment">// Target</span>
+        }
+        .<span class="call">organizationName</span>(env.<span class="property">organizationName</span>)
+    }
+}
+</code></pre><h2>Configuration 기능</h2><p>마지막으로 고민했던 부분은 Configuration관련 내용입니다. TuistUI를 확장하며, Configuration 기능에 좀 <code>TCA</code> 처럼 정규화된 코드를 작성하면 이 플러그인만 가져오면 관리를 편하게 할 수 있겠다고 생각하게 되었습니다.</p><p>그래서 <code>TCA</code> 의 <code>Reducer</code> 스타일을 살짝 빌려서</p><pre><code><span class="keyword">struct</span> AppConfiguration: <span class="type">XCConfig</span> {
+
+    <span class="keyword">enum</span> XCConfigTarget: <span class="type">String</span>, <span class="type">XCConfigTargetType</span> {
+        <span class="keyword">case</span> baseProject
+
+        <span class="keyword">var</span> path: <span class="type">Path</span> {
+            <span class="keyword">switch self</span> {
+            <span class="keyword">case</span> .<span class="dotAccess">baseProject</span>:
+                <span class="keyword">return</span> .<span class="call">relativeToRoot</span>(<span class="string">"XCConfig/baseProject"</span>)
+            }
+        }
+    }
+
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">XCConfigOf</span>&lt;<span class="type">Self</span>&gt; {
+        <span class="type">Configure</span> ({
+            <span class="keyword">switch</span> $0 {
+            <span class="keyword">case</span> .<span class="dotAccess">baseProject</span>:
+                <span class="keyword">return</span> [
+                    <span class="comment">// Write Configuration Method</span>
+                ]
+            }
+        })
+    }
+}
+</code></pre><p><code>XCConfigTarget</code>을 지정하고 body 프로퍼티에서 Configuration Method를 관리해줄수 있도록 만들었습니다.</p><pre><code><span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">XCConfigOf</span>&lt;<span class="type">Self</span>&gt; {
+    <span class="type">Configure</span> ({
+        <span class="keyword">switch</span> $0 {
+        <span class="keyword">case</span> .<span class="dotAccess">A</span>:
+            <span class="keyword">return</span> [
+                .<span class="call">debug</span>(into: $0, name: .<span class="dotAccess">dev</span>)
+                .<span class="call">release</span>(into: $0, name: .<span class="dotAccess">prod</span>)
+            ]
+        }
+    })
+}
+</code></pre><p>이렇게 추가하고</p><pre><code><span class="keyword">struct</span> BaseProject: <span class="type">Module</span> {
+    <span class="keyword">let</span> config = <span class="type">AppConfiguration</span>()
+
+    <span class="keyword">var</span> body: <span class="type">Module</span> {
+        <span class="type">Project</span> {
+            <span class="comment">// Target</span>
+        }
+        .<span class="call">settings</span>(
+            .<span class="call">settings</span>(
+                configurations: config.<span class="call">configure</span>(into: .<span class="dotAccess">baseProject</span>)
+            )
+        )
+    }
+}
+</code></pre><p>settings 부분에서 configurations를 추가하면 보기 좋게 관리 할수 있도록 만들었습니다.</p><h2>고민했던 부분</h2><p>플러그인 개발을 진행하면서 이런 부분은 고민을 많이 했습니다.</p><ul><li>Templates 제공 때 어떻게 제공하는게 좋을지</li><li>Moduler Architecture 부분까지 제공을 할지</li></ul><p>위 두가지 고민이 저에게 가장 큰 고민이였습니다.</p><h3>Templates 제공 때 어떻게 제공하는게 좋을지</h3><p>이 부분은 생각보다 고민시간이 많이 걸렸습니다. 기존 대부분의 Templates 처럼 그냥 <code>Project.swift</code> 랑 <code>Workspace.swift</code> 파일을 생성하게 만들려고 했지만, <code>ProjectDescriptionHelpers</code> 부분에 초점을 두게 되었습니다.</p><p>실질적으로 <code>Module</code> 부분은 Project를 Description 해주는 부분이라고 생각이 들었습니다.</p><pre><code><span class="keyword">struct</span> BaseFeature: <span class="type">Module</span> {
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Module</span> {
+        <span class="type">Project</span> {
+            <span class="comment">/// Target Code</span>
+        }
+        .<span class="call">organizationName</span>(<span class="string">""</span>)
+        .<span class="call">package</span> {
+            <span class="comment">/// Package Code</span>
+        }
+    }
+}
+</code></pre><p>사실상 Project는 <code>Project.swift</code> 라는 부분에서 하는 역할은</p><pre><code><span class="keyword">let</span> project = <span class="type">BaseFeature</span>().<span class="call">module</span>()
+</code></pre><p>생성에 관련된 코드는 이 부분이 하고 있기 때문에 프로젝트 생성을 했을때 <code>Project.swift</code> 보다는 <code>ProjectDescriptionHelper</code> 에 생성되는게 더 의미가 맞겠다라고 생각을 해서</p><p>Project Template를 생성해주면</p><pre><code>.
+├── <span class="type">Projects</span>
+│   └── <span class="type">App</span>
+│     └── <span class="type">Project</span>.<span class="property">swift</span> <span class="comment">//&lt;- Project.swift file Generate</span>
+├── <span class="type">Tuist</span>
+│   ├── <span class="type">ProjectDescriptionHelpers</span>
+│     └── <span class="type">Projects</span>
+│       └── <span class="type">DemoProject</span>.<span class="property">swift</span> <span class="comment">//&lt;- DemoProject.swift file Generate</span>
+│   ├── <span class="type">Dependencies</span>.<span class="property">swift</span>
+│   ├── <span class="type">Config</span>.<span class="property">swift</span>
+│   └── <span class="type">Package</span>.<span class="property">swift</span>
+└── [<span class="type">README</span>.<span class="property">md</span>](http://readme.<span class="property">md</span>/)
+</code></pre><p>이렇게 생성이 되며</p><p>Workspace도 마찬가지로 Template를 생성해주면</p><pre><code>.
+├── <span class="type">Projects</span>
+│   └── <span class="type">App</span>
+│     └── <span class="type">Workspace</span>.<span class="property">swift</span> <span class="comment">//&lt;- Workspace.swift file Generate</span>
+├── <span class="type">Tuist</span>
+│   ├── <span class="type">ProjectDescriptionHelpers</span>
+│     └── <span class="type">Workspace</span>
+│       └── <span class="type">DemoApp</span>.<span class="property">swift</span> <span class="comment">//&lt;- DemoApp.swift file Generate</span>
+│   ├── <span class="type">Dependencies</span>.<span class="property">swift</span>
+│   ├── <span class="type">Config</span>.<span class="property">swift</span>
+│   └── <span class="type">Package</span>.<span class="property">swift</span>
+└── <span class="type">README</span>.<span class="property">md</span>
+</code></pre><p>이렇게 생성되게 만들어뒀습니다.</p><h3>Moduler Architecture 부분까지 제공을 할지</h3><p>이부분은 기존에 또다른 플러그인인 <a href="https://github.com/jihoonahn/microfeature">microfeature</a> 플러그인을 만들어보며 또 다른 플러그인으로 제공을 하게되면</p><p>microfeature plugin 코드중</p><pre><code><span class="keyword">struct</span> ExampleModule: <span class="type">Module</span> {
+    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Module</span> {
+        <span class="type">Project</span> {
+            <span class="type">Microfeature</span> {
+                <span class="type">Example</span>(name: typeName)
+                <span class="type">Interface</span>(name: typeName)
+                <span class="type">Sources</span>(name: typeName)
+                <span class="type">Testing</span>(name: typeName)
+                <span class="type">UnitTests</span>(name: typeName)
+                <span class="type">UITests</span>(name: typeName)
+            }
+        }
+    }
+}
+</code></pre><p>이렇게 Microfeature라는 Method로 감싸야되는 상황이 나오게 됬습니다.</p><pre><code><span class="keyword">public func</span> Microfeature(<span class="keyword">@TargetBuilder</span> content: () -&gt; [<span class="type">Target</span>]) -&gt; [<span class="type">Target</span>] {
+    <span class="keyword">return</span> <span class="call">content</span>()
+}
+</code></pre><p>Microfeature 플러그인을 제작할때 TuistUI를 가져올수 없기 때문에 발생하는 사소한 부분이였기 때문에 플러그인으로 가져오는건 비 효율적이라고 생각이 들었고,</p><p><strong>TuistUI 내부에서 Moduler Architecture를 넣어둔다면?</strong></p><p>이부분은 또 다른 모듈을 관리하는 Architecture가 나올수 있다는 것을 가정하에 제외하게 되었습니다. (TuistUI가 Modular Architecture 하나로만 제한되는 상황을 방지하기 위함입니다.)</p><h2>향후 개발 계획</h2><p>현재는 넘어가서 전역 후 <a href="https://github.com/jihoonme/designtuist">DesignTuist</a> 에서 TuistUI 플러그인을 사용하며, 필요한 부분과 개선할 부분을 찾아볼 생각이고</p><p>추가적으로 이런 부분 추가하면 좋겠다 생각되시는 부분은 <a href="https://github.com/jihoonme/tuistui/issues">issue</a>로 남겨주시면 열심히 추가해보겠습니다!</p><p><a href="https://github.com/jihoonme/tuistui">https://github.com/jihoonme/tuistui</a></p></div></div><div class="mx-auto w-[85%] text-left mt-8 md:w-[700px]"><div class="flex justify-between mt-6"><div><ul class="m-0"><li class="inline-block mr-1.5"><a href="https://blog.jihoon.me/tags/swift" class="block my-1 px-1.5 py-2 bg-neutral-900 text-white rounded-lg transition duration-200 ease-in-out hover:bg-zinc-300 hover:text-black">swift</a></li><li class="inline-block mr-1.5"><a href="https://blog.jihoon.me/tags/tuist" class="block my-1 px-1.5 py-2 bg-neutral-900 text-white rounded-lg transition duration-200 ease-in-out hover:bg-zinc-300 hover:text-black">tuist</a></li><li class="inline-block mr-1.5"><a href="https://blog.jihoon.me/tags/plugin" class="block my-1 px-1.5 py-2 bg-neutral-900 text-white rounded-lg transition duration-200 ease-in-out hover:bg-zinc-300 hover:text-black">plugin</a></li><li class="inline-block mr-1.5"><a href="https://blog.jihoon.me/tags/tuistui" class="block my-1 px-1.5 py-2 bg-neutral-900 text-white rounded-lg transition duration-200 ease-in-out hover:bg-zinc-300 hover:text-black">tuistui</a></li></ul></div><button aria-label="link share" class="copyPost m-1 w-9 h-9 p-1.5 bg-blog-c-button rounded-full hover:bg-gray-300 transition duration-200 ease-in-out"><img src="/static/icons/copy.svg" class="my-0"/></button></div></div><div class="flex flex-col-reverse px-4 mt-11 mb-4 max-w-3xl mx-auto md:flex-row md:px-0"><div class="min-w-0 flex-1 mt-4 md:mt-0"><a href="/blog/letswift-2023" class="flex cursor-pointer rounded-[10px] bg-blog-c-preview-page w-full h-full p-4 min-h-[4.2rem] items-center"><div class="flex-1 flex flex-col leading-none min-w-0 items-start"><p class="text-gray-500 m-0.5">Preview Post</p><h3 class="text-black text-2xl font-medium m-0.5">LetSwift 2023 회고록</h3></div></a></div><div class="min-w-0 flex-1 mt-4 md:mt-0 md:ml-8"></div></div><script src="https://utteranc.es/client.js" repo="jihoonahn/blog" issue-term="pathname" label="comments" theme="github-light" crossorigin="anonymous" async></script></article></section></main><footer class="bg-blog-c-footer relative"><div class="flex flex-wrap justify-between p-1 mx-auto max-w-4xl"><div class="text-sm mx-3 my-auto p-2"><div><p class="text-stone-600 my-0">Copyright © <a href="https://github.com/jihoonahn" class="text-stone-700">Jihoonahn</a></p></div><div><p class="text-stone-600 my-0">Made with Swift</p></div></div><div class="mx-2"><ul class="inline-flex gap-4 list-none"><li class="text-center w-4 h-4"><a href="https://github.com/jihoonahn"><img src="/static/icons/github.svg" class="w-full h-auto rounded-none"/></a></li><li class="text-center w-4 h-4"><a href="https://www.linkedin.com/in/ahnjihoon/"><img src="/static/icons/linkedin.svg" class="w-full h-auto rounded-none"/></a></li><li class="text-center w-4 h-4"><a href="mailto:jihoonahn.dev@gmail.com"><img src="/static/icons/envelope-solid.svg" class="w-full h-auto rounded-none"/></a></li><li class="text-center w-4 h-4"><a href="https://blog.jihoon.me/feed.rss"><img src="/static/icons/rss-solid.svg" class="w-full h-auto rounded-none"/></a></li></ul></div></div></footer><script>(function(){
+    function attachEvent(selector, event, fn) {
+      const matches = typeof selector === 'string' ? document.querySelectorAll(selector)    : selector;
+      if (matches && matches.length) {
+        matches.forEach((elem) => {
+          elem.addEventListener(event, (e) => fn(e, elem), false);
+        });
+      }
+    }
+
+    window.onload = function() {
+      var host = window.location.host;
+      var pathname = window.location.pathname;
+      let lastKnownInnerWidth = window.innerWidth;
+      let ticking = true;
+    
+      attachEvent('#mobileNavButton', 'click', function() {
+        document.body.classList.toggle('overflow-hidden');
+        document.getElementById('blogNavScreen')?.classList.toggle('hidden');
+        document.getElementById('mobileNavButton')?.classList.toggle('expanded');
+      });
+    
+      attachEvent('.copyPost', 'click', function() {
+        var tempInput = document.createElement("input");
+        tempInput.value = host + pathname;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+      });
+    
+      function applyHeaderStylesOnResize() {
+        if (lastKnownInnerWidth<768) {
+          document.body.classList.remove('overflow-hidden');
+          document.getElementById('blogNavScreen')?.classList.add('hidden');
+          document.getElementById('mobileNavButton')?.classList.remove('expanded');
+        }
+      }
+    
+      applyHeaderStylesOnResize();
+      window.addEventListener('resize', applyHeaderStylesOnResize);
+    };
+    
+    window.onpageshow = function() {
+      document.body.classList.remove('overflow-hidden');
+      document.getElementById('header nav')?.classList.add('hidden');
+    };
+})();</script></body></html>
